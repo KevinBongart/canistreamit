@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Canistreamit::VERSION
   spec.authors       = ["Kevin Bongart"]
   spec.email         = ["contact@kevinbongart.net"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = "A Ruby wrapper for canistream.it API"
+  spec.description   = "A Ruby wrapper for canistream.it API"
   spec.homepage      = ""
   spec.license       = "MIT"
 
