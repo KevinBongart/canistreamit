@@ -1,5 +1,7 @@
 require "canistreamit/version"
+require "canistreamit/configuration"
+require "canistreamit/client"
 
 module Canistreamit
-  # Your code goes here...
+  extend Configuration
 end
