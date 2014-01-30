@@ -1,6 +1,6 @@
 # canistreamit
 
-A Ruby wrapper for [canistream.it](http://www.canistream.it/) API.
+A Ruby wrapper for [canistream.it](http://www.canistream.it/) API inspired by [Niels Lemmens's Python wrapper](https://github.com/Bulv1ne/CanIStreamIt).
 
 ## Installation
 
