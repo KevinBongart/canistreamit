@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["contact@kevinbongart.net"]
   spec.summary       = "A Ruby wrapper for canistream.it API"
   spec.description   = "A Ruby wrapper for canistream.it API"
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/KevinBongart/canistreamit"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
