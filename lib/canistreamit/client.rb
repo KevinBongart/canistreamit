@@ -9,7 +9,9 @@ module Canistreamit
 
     base_uri Configuration::DEFAULT_ENDPOINT
 
-    def initialize(options={})
+    VALID_MEDIA_TYPES = ["streaming", "rental", "purchase", "dvd", "xfinity"].freeze
+
+    def initialize(options = {})
       # Merge the config values from the module and those passed
       # to the client.
       merged_options = Canistreamit.options.merge(options)
@@ -26,26 +28,51 @@ module Canistreamit
       response.parsed_response
     end
 
-    def query(movie_id, media_type)
-      response = self.class.get "/query", query: {
-        movieId: movie_id,
-        attributes: '1',
-        mediaType: media_type
-      }
+    def query(movie_id, media_types = "streaming")
+      media_types = array_of_unique_elements(media_types)
+      return unless valid_media_types?(media_types)
 
-      response.parsed_response
+      result = {}
+
+      media_types.each do |media_type|
+        response = self.class.get "/query", query: {
+          movieId: movie_id,
+          attributes: '1',
+          mediaType: media_type
+        }
+
+        result[media_type] = response.parsed_response
+      end
+
+      result
     end
 
-    def search_and_query(movie_name, media_type, limit = 1)
+    def search_and_query(movie_name, media_types = "streaming", limit = 1)
+      media_types = array_of_unique_elements(media_types)
+      return unless valid_media_types?(media_types)
+
       response = search(movie_name)
 
       if response.any?
         response.first(limit).map do |movie|
-          query(movie["_id"], media_type)
+          {
+            "movie" => movie,
+            "availability" => query(movie["_id"], media_types)
+          }
         end
       else
         response
       end
+    end
+
+    private
+
+    def array_of_unique_elements(array_or_element)
+      Array(array_or_element).uniq
+    end
+
+    def valid_media_types?(media_types)
+      (media_types - VALID_MEDIA_TYPES).empty?
     end
   end
 end
