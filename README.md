@@ -24,13 +24,13 @@ $ gem install canistreamit
 
 ## Usage
 
-Create a new client:
+### Create a new client
 
 ```ruby
 client = Canistreamit::Client.new
 ```
 
-Search for movies by title:
+### Search for movies by title
 
 ```ruby
 client.search("Everything is Illuminated")
@@ -49,7 +49,7 @@ client.search("Everything is Illuminated")
        "http://www.canistream.it/search/movie/4ebdd5f9f5f807716100001b/everything-is-illuminated"}}]
 ```
 
-Query canistream.it by movie id and media type:
+### Query canistream.it by movie id and media type
 
 ```ruby
 client.query("4ebdd5f9f5f807716100001b", ["rental", "streaming"])
@@ -63,16 +63,6 @@ client.query("4ebdd5f9f5f807716100001b", ["rental", "streaming"])
         "http://click.linksynergy.com/fs-bin/click?id=g0LjNrUM/ms&subid=&offerid=146261.1&type=10&tmpid=3909&RD_PARM1=https%3A%2F%2Fitunes.apple.com%2Fus%2Fmovie%2Feverything-is-illuminated%2Fid293314469%3Fuo%3D4",
        "time"=>0,
        "friendlyName"=>"Apple iTunes Rental",
-       "cache"=>true},
-     "youtube_rental"=>
-      {"url"=>"http://www.canistream.it/link/go/4f33decdf5f8073e10000027",
-       "price"=>"1.99",
-       "external_id"=>"KdHNp9FPGG8",
-       "date_checked"=>1391118942,
-       "direct_url"=>
-        "http://www.youtube.com/watch?v=KdHNp9FPGG8&feature=youtube_gdata_player",
-       "time"=>0,
-       "friendlyName"=>"Youtube Rental",
        "cache"=>true},
      "android_rental"=>
       {"url"=>"http://www.canistream.it/link/go/4f47c662f5f8076d43000001",
@@ -108,7 +98,7 @@ Available media types:
 Because each media type will result in one slow request to canistream.it API,
 avoid including more types than you care for.
 
-You can also query canistream.it for all search results at once:
+### Query canistream.it for all search results at once
 
 ```ruby
 client.search_and_query("die hard", ["rental", "streaming"])
