@@ -92,6 +92,20 @@ Available media types:
 - dvd
 - xfinity
 
+You can also query canistream.it for all search result:
+
+```ruby
+client.search_and_query("die hard", "rental")
+```
+
+Because this is pretty heavy on canistream.it API,
+`search_and_query` only queries for the first search result by default.
+You can set your own limit with a third parameter, but be responsible:
+
+```ruby
+client.search_and_query("die hard", "rental", 5)
+```
+
 ## Contributing
 
 1. Fork it (http://github.com/KevinBongart/canistreamit/fork)

@@ -35,5 +35,17 @@ module Canistreamit
 
       response.parsed_response
     end
+
+    def search_and_query(movie_name, media_type, limit = 1)
+      response = search(movie_name)
+
+      if response.any?
+        response.first(limit).map do |movie|
+          query(movie["_id"], media_type)
+        end
+      else
+        response
+      end
+    end
   end
 end
